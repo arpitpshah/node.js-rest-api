@@ -18,13 +18,26 @@ module.exports.getUserData=function(req,res){
     });
 }
 module.exports.sortUserData=function(req,res){
-    console.log("hello",req.params);
     connection.query('SELECT u.*,e.organization from users u inner join employees e on e.employeeID=u.employeeID order by u.fName,u.lName,u.emailID,u.employeeID,e.organization',function (error, results, fields) {
         if (error) {
             res.json({
               status:false,
-              issue:error,
-              results:results,
+              message:'there are some error with query'
+              })
+        }else{
+            res.json({
+                results:results
+               });
+        }
+    });
+}
+
+module.exports.getAllData=function(req,res){
+    console.log("hello",req.params);
+    connection.query('SELECT u.*,e.organization from users u inner join employees e on e.employeeID=u.employeeID',function (error, results, fields) {
+        if (error) {
+            res.json({
+              status:false,
               message:'there are some error with query'
               })
         }else{

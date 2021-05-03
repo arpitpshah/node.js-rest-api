@@ -2,7 +2,6 @@ var connection = require('./../../config');
 module.exports.authenticate=function(req,res){
     var emailID=req.body.email;
     var password=req.body.password;
-    console.log("hey",req,emailID,password);
     connection.query('SELECT * FROM users WHERE emailID = ?',[emailID], function (error, results, fields) {
       if (error) {
           res.json({

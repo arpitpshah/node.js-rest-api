@@ -10,6 +10,7 @@ const getDataRoute=require('./api/controllers/getData');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
+app.get('/',getDataRoute.getAllData);
 app.post('/api/register',registerRoute.register);
 app.post('/api/authenticate',authenticateRoute.authenticate);
 app.get('/api/getData/:fname/:lname/:employeeID',getDataRoute.getUserData);
